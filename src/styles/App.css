@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap");
+
+:root {
+	--clr-bg-main: hsl(222, 26%, 31%);
+	/* also toggle button background */
+	--clr-bg-keypad: hsl(223, 31%, 20%);
+	--clr-bg-screen: hsl(224, 36%, 15%);
+
+	/* other keys */
+	--clr-primary: hsl(30, 25%, 89%);
+	--clr-primary-light: white;
+	--clr-primary-shadow: hsl(28, 16%, 65%);
+
+	/* [DEL] & [RESET] keys */
+	--clr-secondary: hsl(225, 21%, 49%);
+	--clr-secondary-light: hsl(224, 51%, 76%);
+	--clr-secondary-shadow: hsl(224, 28%, 35%);
+
+	/* [=] key, toggle button */
+	--clr-accent: hsl(6, 63%, 50%);
+	--clr-accent-light: hsl(6, 93%, 67%);
+	--clr-accent-shadow: hsl(6, 70%, 34%);
+
+	/* For ease of reassignment (NOT used in rulesets) */
+	--clr-text-dark: hsl(221, 14%, 31%);
+	--clr-text-light: white;
+
+	/* Used to assign text color */
+	--clr-text-main: var(--clr-text-light);
+	--clr-text-primary: var(--clr-text-dark);
+	--clr-text-secondary: var(--clr-text-light);
+	--clr-text-accent: var(--clr-text-light);
+
+	/* themeless properties */
+	--border-radius: 0.5rem;
+}
+
+.light-theme {
+	--clr-bg-main: hsl(0, 0%, 90%);
+	--clr-bg-keypad: hsl(0, 5%, 81%);
+	--clr-bg-screen: hsl(0, 0%, 93%);
+
+	--clr-primary: hsl(45, 7%, 89%);
+	--clr-primary-shadow: hsl(35, 11%, 61%);
+
+	--clr-secondary: hsl(185, 42%, 37%);
+	--clr-secondary-light: hsl(185, 41%, 56%);
+	--clr-secondary-shadow: hsl(185, 58%, 25%);
+
+	--clr-accent: hsl(25, 98%, 40%);
+	--clr-accent-light: hsl(25, 100%, 61%);
+	--clr-accent-shadow: hsl(25, 99%, 27%);
+
+	--clr-text-dark: hsl(60, 10%, 19%);
+	--clr-text-main: var(--clr-text-dark);
+}
+
+.purple-theme {
+	--clr-bg-main: hsl(268, 75%, 9%);
+	--clr-bg-keypad: hsl(268, 71%, 12%);
+	--clr-bg-screen: var(--clr-bg-keypad);
+
+	--clr-primary: hsl(268, 47%, 21%);
+	--clr-primary-light: hsl(268, 54%, 44%);
+	--clr-primary-shadow: hsl(290, 70%, 36%);
+
+	--clr-secondary: hsl(281, 89%, 26%);
+	--clr-secondary-light: hsl(280, 56%, 44%);
+	--clr-secondary-shadow: hsl(285, 91%, 52%);
+
+	--clr-accent: hsl(176, 100%, 44%);
+	--clr-accent-light: hsl(177, 100%, 79%);
+	--clr-accent-shadow: hsl(177, 92%, 70%);
+
+	--clr-text-dark: hsl(198, 20%, 13%);
+	--clr-text-yellow: hsl(52, 100%, 62%);
+
+	--clr-text-main: var(--clr-text-yellow);
+	--clr-text-primary: var(--clr-text-yellow);
+	--clr-text-accent: var(--clr-text-dark);
+}
+
+.screen::-webkit-scrollbar {
+	height: 3px;
+}
+
+.screen::-webkit-scrollbar-track {
+	margin-inline: var(--border-radius);
+	border-radius: var(--border-radius);
+}
+
+.screen::-webkit-scrollbar-thumb {
+	background: var(--clr-accent);
+	border-radius: 1rem;
+	cursor: pointer;
+}
+
+.screen::-webkit-scrollbar-thumb:hover {
+	background: var(--clr-accent-light);
+}
+
+@supports (scrollbar-color: red blue) {
+	.screen {
+		scrollbar-color: var(--clr-accent) transparent;
+		scrollbar-width: thin;
+	}
+}
+
+body {
+	background: var(--clr-bg-main);
+	font-family: "League Spartan", sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+	color: var(--clr-text-main);
+}
+
+#root {
+	max-width: 32rem;
+	margin: 0 auto;
+	padding-inline: 1.5rem;
+}
+
+/* Header styles */
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-block: 2rem;
+}
+
+h1 {
+	font-size: 28px;
+}
+
+@media (min-width: 376px) {
+	h1 {
+		font-size: 24px;
+	}
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+.btn-theme--grid {
+	--btn-grid-width: 140px;
+	--btn-grid-height: 50px;
+	width: var(--btn-grid-width);
+	height: var(--btn-grid-height);
+	display: grid;
+	grid-template: 1fr 1fr / 1fr 1fr;
+	grid-template-areas:
+		". markings"
+		"label button";
+	align-items: center;
+}
+
+.btn-theme--markings {
+	grid-area: markings;
+	font-size: 12px;
+	padding-inline: 8px;
+	display: flex;
+	justify-content: space-between;
+	user-select: none;
+}
+
+.btn-theme--label {
+	grid-area: label;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	user-select: none;
+}
+
+#btn-theme {
+	--slider-padding: 4px;
+	grid-area: button;
+	position: relative;
+	height: calc(var(--btn-grid-height) / 2);
+	border-radius: calc(var(--btn-grid-height) / 4);
+	background: var(--clr-bg-keypad);
+	display: flex;
+	align-items: center;
+}
+
+#btn-theme::after {
+	--width: calc((var(--btn-grid-height) / 2) - var(--slider-padding) * 2);
+	content: "";
+	display: block;
+	position: absolute;
+	width: var(--width);
+	aspect-ratio: 1;
+	background: var(--clr-accent);
+	border-radius: 50%;
+	left: var(--slider-padding);
+	transition: left 150ms ease-out;
+}
+
+.light-theme #btn-theme::after {
+	left: calc(50% - var(--width) / 2);
+}
+
+.purple-theme #btn-theme::after {
+	left: calc(100% - (var(--width) + var(--slider-padding)));
+}
+
+/* Screen styles */
+
+.screen {
+	height: 76px;
+	background: var(--clr-bg-screen);
+	padding: 1.5rem 1.5rem 1.25rem;
+	padding-right: 0;
+	border-radius: var(--border-radius);
+	margin-bottom: 1rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.screen__output {
+	display: block;
+	width: max-content;
+	margin-left: auto;
+	padding-right: 1.5rem;
+	text-align: right;
+	line-height: 1;
+}
+
+.screen__output.error {
+	color: red;
+}
+
+/* Keypad styles */
+.keypad {
+	--padding: 1.5rem;
+	--height: 25rem;
+	--gap: 0.75rem;
+	height: var(--height);
+	border-radius: var(--border-radius);
+	background: var(--clr-bg-keypad);
+	padding: var(--padding);
+	display: grid;
+	grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+	gap: var(--gap);
+	color: var(--clr-text-primary);
+}
+
+.key {
+	--clr-hover: var(--clr-primary-light);
+	--clr-shadow: var(--clr-primary-shadow);
+	--shadow-thickness: 4px;
+	--key-height: calc(
+		(var(--height) - var(--padding) * 2 - var(--gap) * 4) / 5 -
+			var(--shadow-thickness)
+	);
+	height: var(--key-height);
+	color: var(--clr-text-primary);
+	background: var(--clr-primary);
+	/* border-bottom: 4px solid var(--clr-shadow); */
+	box-shadow: 0 var(--shadow-thickness) var(--clr-shadow);
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: translate 100ms, box-shadow 100ms, background 100ms;
+}
+
+:is(.key, .key.secondary, .key.accent):hover {
+	background: var(--clr-hover);
+}
+
+.key:active {
+	translate: 0 4px;
+	box-shadow: none;
+}
+
+@media (min-width: 376px) {
+	.keypad {
+		--height: 23rem;
+		--gap: 1rem;
+	}
+
+	.key {
+		border-radius: 8px;
+	}
+}
+
+.key__text {
+	line-height: 1;
+	position: relative;
+	top: 3px;
+}
+
+.key__text.fs-small {
+	font-size: 20px;
+}
+
+.key.secondary {
+	--clr-hover: var(--clr-secondary-light);
+	--clr-shadow: var(--clr-secondary-shadow);
+	color: var(--clr-text-secondary);
+	background: var(--clr-secondary);
+}
+
+.key.accent {
+	--clr-hover: var(--clr-accent-light);
+	--clr-shadow: var(--clr-accent-shadow);
+	color: var(--clr-text-accent);
+	background: var(--clr-accent);
+}
+
+.key.long {
+	grid-area: auto / span 2;
+}
+
+/* Footer styles */
+
+.attribution {
+	margin-top: 1rem;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.attribution a {
+	color: var(--clr-accent);
+}
